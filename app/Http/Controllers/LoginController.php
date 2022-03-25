@@ -26,6 +26,8 @@ class LoginController extends Controller{
             }
         }
         // if failed login
-        return redirect('login');
+
+        $pesan = 'Username atau password tidak valid! pastikan data terisi dengan benar.';
+        return redirect('login')->with(['deleted' => $pesan]);
     }
 }

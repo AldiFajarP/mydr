@@ -7,6 +7,24 @@
                 <div class="col-sm-6 col-sm-offset-3">
                     <div class="login-form"><!--login form-->
                         <h2 align="center">Login</h2>
+                        @if(session()->get('created'))
+                        <div class="alert alert-success alert-dismissible fade-show">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ session()->get('created') }}
+                        </div>
+
+                        @elseif(session()->get('edited'))
+                        <div class="alert alert-info alert-dismissible fade-show">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ session()->get('edited') }}
+                        </div>
+
+                        @elseif(session()->get('deleted'))
+                        <div class="alert alert-danger alert-dismissible fade-show">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ session()->get('deleted') }}
+                        </div>
+                        @endif
                         <form method="POST" action="{{url('/masuk')}}">
                         @csrf
                             <input id="login" type="text"

@@ -54,7 +54,7 @@
                             <td>{{ $rd->nik}}</td>
                             <td>
                                 <a href="{{ url('/admin/rekamdata/'. $rd->id)}}" class="btn btn-info btn-xs">
-                                    <i class="fa fa-eye" aria-hidden="true" style="color:white;">Rekam Data</i>
+                                    <i class="fa fa-eye" aria-hidden="true" style="color:white;"> Rekam Data</i>
                                 </a>
                             </td>
                         </tr>

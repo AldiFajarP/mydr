@@ -25,6 +25,7 @@ class RekamDataController extends Controller
     {   
         $rekamdata = DB::table('rekamdatas')
                     ->where('KodeUser', Auth::id())
+                    ->where('Status', 'OPN')
                     ->get();
 
         return view('frontend.rekamdata.index', compact('rekamdata'));
@@ -62,5 +63,52 @@ class RekamDataController extends Controller
 
         $pesan = 'Rekam data ' . $newID . ' berhasil ditambahkan';
         return redirect('/rekamdata')->with(['created' => $pesan]); 
+    }
+
+    public function edit($id)
+    {   
+        $rekamdata = DB::table('rekamdatas')
+                    ->where('KodeUser', Auth::id())
+                    ->where('Status', 'OPN')
+                    ->get();
+
+        $idrekamdata = DB::table('rekamdatas')
+                    ->where('KodeUser', Auth::id())
+                    ->where('KodeRD', $id)
+                    ->get();
+
+        return view('frontend.rekamdata.edit', compact('rekamdata', 'idrekamdata'));
+    }
+
+    public function update(Request $request)
+    {
+        DB::table('rekamdatas')->where('KodeRD', $request->KodeRD)->update([
+            'Tanggal' => $request->Tanggal,
+            'Waktu' => $request->Waktu,
+            'Lokasi' => $request->Lokasi,
+            'NamaTempat' => $request->NamaTempat,
+            'JenisTempat' => $request->JenisTempat,
+            'SuhuTubuh' => $request->SuhuTubuh,
+            'Keterangan' => $request->Keterangan,
+            'KodeUser' => Auth::id(),
+            'updated_at' => \Carbon\Carbon::now()
+        ]);
+
+        $pesan = 'Rekam data ' . $request->KodeRD . ' berhasil diubah';
+        return redirect('/rekamdata')->with(['edited' => $pesan]); 
+    }
+
+    public function destroy($id)
+    {
+        DB::table('rekamdatas')
+        ->where('KodeUser', Auth::id())
+        ->where('KodeRD', $id)
+        ->update([
+            'Status' => 'DEL',
+            'updated_at' => \Carbon\Carbon::now()
+        ]);
+
+        $pesan = 'Rekam data ' . $id . ' berhasil dihapus';
+        return redirect('/rekamdata')->with(['deleted' => $pesan]); 
     }
 }

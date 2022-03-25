@@ -28,7 +28,7 @@
                             </ul>
                             @endif
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li class="pull-right"><a href="/tentangakun">Tentang Akun</a></li>
+                            <li class="pull-right"><a href="/changepassword">Ubah Password</a></li>
                             </ul>
                         </div>
                         @endif
@@ -42,6 +42,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
+                    @if(session()->get('created'))
+                    <div class="alert alert-success alert-dismissible fade-show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ session()->get('created') }}
+                    </div>
+
+                    @elseif(session()->get('edited'))
+                    <div class="alert alert-info alert-dismissible fade-show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ session()->get('edited') }}
+                    </div>
+
+                    @elseif(session()->get('deleted'))
+                    <div class="alert alert-danger alert-dismissible fade-show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ session()->get('deleted') }}
+                    </div>
+                    @endif
                     <div id="slider-carousel" class="carousel slide" data-ride="carousel" style="background-color:#b4aea4">
                         <div class="carousel-inner">
                             <div class="item active">

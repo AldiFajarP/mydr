@@ -44,13 +44,13 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header" style="background-color:#0077ff; padding: 0.1% 0.1% 0.1% 0.1%;">
-                <h5 align="center" style="color:white;">Rekam Data Aktif</h5>
+                <h5 align="center" style="color:white;">Rekam Data Terhapus</h5>
             </div>
             <div class="card-body">
-                @if($terhapus == '0')
-                <a class="btn btn-danger" disabled>Lihat Data Terhapus ({{$terhapus}})</a>
+                @if($aktif == '0')
+                <a class="btn btn-success" disabled>Lihat Data Aktif ({{$aktif}})</a>
                 @else
-                <a href="{{ url('/admin/rekamdata/terhapus/'. $users->id)}}" class="btn btn-danger">Lihat Data Terhapus ({{$terhapus}})</a>
+                <a href="{{ url('/admin/rekamdata/'. $users->id)}}" class="btn btn-success">Lihat Data Aktif ({{$aktif}})</a>
                 @endif
 
                 <br></br>
@@ -65,7 +65,6 @@
                             <th>JenisTempat</th>
                             <th>SuhuTubuh</th>
                             <th>Keterangan</th> 
-                            <th>Aksi</th>                                                       
                         </tr>
                     </thead>
                     <tbody>
@@ -83,11 +82,6 @@
                             <td>{{ $rd->JenisTempat}}</td>
                             <td>{{ $rd->SuhuTubuh}}</td>
                             <td>{{ $rd->Keterangan}}</td>
-                            <td>
-                                <a href="{{ url('/admin/rekamdata/destroy/'.$users->id.'/'. $rd->KodeRD)}}" class="btn btn-danger btn-xs">
-                                    <i class="fa fa-trash" aria-hidden="true" style="color:white;"> Hapus</i>
-                                </a> 
-                            </td>
                         </tr>
                         @endforeach
                     </tbody>

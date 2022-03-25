@@ -37,8 +37,6 @@
                 <h5 align="center" style="color:white;">Data User</h5>
             </div>
             <div class="card-body">
-                <button class="btn btn-success" id="btn1">User Biasa</button>
-                <button class="btn btn-info" id="btn2">User Backend</button>
                 <br></br>
                 <table class="table table-bordered table-hover" id="table1" name="table1" style="text-align:center;">
                     <thead style="background-color:#262626; color:white;">
@@ -51,14 +49,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($user1 as $users1)
+                        @foreach ($user as $users)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{ $users1->Username}}</td>
-                            <td>{{ $users1->fullname}}</td>
-                            <td>{{ $users1->nik}}</td>
+                            <td>{{ $users->Username}}</td>
+                            <td>{{ $users->fullname}}</td>
+                            <td>{{ $users->nik}}</td>
                             <td>
-                                <a href="{{ url('/admin/manajemenuser/destroy/'.$users1->id)}}" class="btn btn-danger btn-xs">
+                                <a href="{{ url('/admin/user/biasa/destroy/'.$users->id)}}" class="btn btn-danger btn-xs">
                                     <i class="fa fa-trash" aria-hidden="true" style="color:white;"> Hapus</i>
                                 </a> 
                             </td>
@@ -70,4 +68,21 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+        $(document).ready(function() {
+
+    $('#table1').DataTable({
+        "order": [],
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": true,
+            "bAutoWidth": true 
+});
+
+
+});
+</script>
+@endpush
 @endsection

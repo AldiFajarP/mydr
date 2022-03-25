@@ -16,7 +16,30 @@ class PanelController extends Controller
 
     public function index()
     {   
+
+        $users1 = DB::table('users')
+                ->where('status', 'OPN')
+                ->count();
+
+        $users2 = DB::table('users')
+                ->where('status', 'DEL')
+                ->count();
+
+        $rekamdatas1 = DB::table('rekamdatas')
+                ->where('status', 'OPN')
+                ->count();
+
+        $rekamdatas2 = DB::table('rekamdatas')
+                ->where('status', 'DEL')
+                ->count();
+
         $Role = HakAksesModel::GetRoleUser();
-        return view('backend.index',['Role'=>$Role]);
+        return view('backend.dashboard',[
+            'Role'=> $Role,
+            'users1' => $users1,
+            'users2' => $users2,
+            'rekamdatas1' => $rekamdatas1,
+            'rekamdatas2' => $rekamdatas2,
+        ]);
     }
 }

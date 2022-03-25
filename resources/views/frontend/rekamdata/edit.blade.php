@@ -78,15 +78,20 @@
 			<div class="register-req">				
 				<p>Isilah data dengan benar. Pastikan waktu dan tanggal sesuai dengan kegiatan / perjalanan yang anda lakukan.</p>
 			</div><!--/register-req-->
-			<form action="{{route('rekamdata.store')}}" method="post">
+			<form action="{{route('rekamdata.update')}}" method="post">
 				@csrf
 			<div class="shopper-informations">
 				<div class="row">
 					<div class="col-sm-3">
 						<div class="shopper-info">
+								@foreach($idrekamdata as $rd)
+								<input type="hidden" required class="form-control" name="KodeRD" id="KodeRD" value="{{$rd->KodeRD}}">
+								@endforeach
 							<p>Tanggal</p>
 								<div class="input-group date" id="inputDate1">
-				                    <input type="text" required class="form-control" name="Tanggal" id="inputDate1">
+									@foreach($idrekamdata as $rd)
+				                    <input type="text" required class="form-control" name="Tanggal" id="inputDate1" value="{{$rd->Tanggal}}">
+				                    @endforeach
 				                    <span class="input-group-addon">
 				                        <span class="glyphicon glyphicon-calendar"></span>
 				                    </span>
@@ -95,7 +100,9 @@
 						<div class="shopper-info">
 							<p>Waktu</p>
 								<div class="input-group date" id="inputTime1">
-				                    <input type="text" required class="form-control" name="Waktu" id="inputTime1">
+									@foreach($idrekamdata as $rd)
+				                    <input type="text" required class="form-control" name="Waktu" id="inputTime1" value="{{$rd->Waktu}}">
+				                    @endforeach
 				                    <span class="input-group-addon">
 				                        <span class="glyphicon glyphicon-calendar"></span>
 				                    </span>
@@ -106,19 +113,26 @@
 						<div class="bill-to text-center">
 							<p>Lokasi</p>
 							<div class="shopper-info">
-								<input type="text" required class="form-control" name="Lokasi" id="Lokasi">
+								@foreach($idrekamdata as $rd)
+								<input type="text" required class="form-control" name="Lokasi" id="Lokasi" value="{{$rd->Lokasi}}">
+								@endforeach
 							</div>
 						</div>
 						<div class="col-sm-6 bill-to text-center">
 							<p>Nama Tempat</p>
 							<div class="shopper-info">
-								<input type="text" required class="form-control" name="NamaTempat" id="NamaTempat">
+								@foreach($idrekamdata as $rd)
+								<input type="text" required class="form-control" name="NamaTempat" id="NamaTempat" value="{{$rd->NamaTempat}}">
+								@endforeach
 							</div>
 						</div>
 						<div class="col-sm-6 bill-to text-center">
 							<p>JenisTempat</p>
 							<div class="shopper-info">
 								<select name="ViewJenisTempat" id="ViewJenisTempat" required class="form-control" onclick="jt()">
+									@foreach($idrekamdata as $rd)
+									<option value="{{$rd->JenisTempat}}">{{$rd->JenisTempat}}</option>
+									@endforeach
 									<option value="">Pilih Jenis</option>
 									<option value="Coffee Shop">Coffee Shop</option>
 									<option value="Mall">Mall</option>
@@ -127,7 +141,9 @@
 									<option value="Festival / Event">Festival / Event</option>
 									<option value="Lainnya">Lainnya</option>
 								</select>
-								<input style="display:none;" type="text" class="form-control" name="JenisTempat" id="JenisTempat" value="">								
+								@foreach($idrekamdata as $rd)
+								<input style="display:none;" type="text" class="form-control" name="JenisTempat" id="JenisTempat" value="{{$rd->JenisTempat}}">
+								@endforeach
 							</div>
 						</div>
 					</div>
@@ -136,7 +152,9 @@
 							<p>Suhu Tubuh</p>
 							<div class="shopper-info">
 								<div class="input-group date">
-									<input type="number" required class="form-control" name="SuhuTubuh" id="SuhuTubuh" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+									@foreach($idrekamdata as $rd)
+									<input type="number" required class="form-control" name="SuhuTubuh" id="SuhuTubuh" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" value="{{$rd->SuhuTubuh}}">
+									@endforeach
 									<span class="input-group-addon">
 					                        <span>°C</span>
 					                </span>
@@ -145,6 +163,9 @@
 							<p>Keterangan</p>
 							<div class="shopper-info">
 								<select name="Keterangan" required class="form-control">
+									@foreach($idrekamdata as $rd)
+									<option value="{{$rd->Keterangan}}">{{$rd->Keterangan}}</option>
+									@endforeach
 									<option value="">Pilih Keterangan</option>
 									<option value="Normal">Normal</option>
 									<option value="Tidak Normal">Tidak Normal</option>
@@ -156,7 +177,9 @@
 					<div class="col-sm-6 clearfix text-center">
 						<div class="col-sm-12 bill-to text-center">
 							<div class="shopper-info">
-								<button type="submit" class="btn btn-primary" style="width:100%;">Rekam Data</button>
+								<button type="submit" class="btn btn-primary" style="width:100%;">Ubah</button>
+								<br></br>
+								<a href="/rekamdata" class="btn btn-danger" style="width:100%;">Kembali</a>
 							</div>
 						</div>
 					</div>										
@@ -187,7 +210,7 @@
 						@foreach($rekamdata as $data)
 						<tr>
 							<td>{{$loop->iteration}}</td>
-							<td>{{$data->Tanggal}}</td> 
+							<td>{{$data->Tanggal}}</td>
 							<td>{{$data->Waktu}}</td>
 							<td>{{$data->Lokasi}}</td>
 							<td>{{$data->NamaTempat}}</td>

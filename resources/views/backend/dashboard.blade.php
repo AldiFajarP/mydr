@@ -40,7 +40,7 @@
     }
 </style>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed unselect">
 <div class="wrapper">
 
 
@@ -110,7 +110,110 @@
 
     <!-- Main content -->
     <section class="content">
-      @yield('content')
+      <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          @if(Auth::user()->roleid == '3')
+          <div class="col-lg-6 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{$users1}}</h3>
+
+                <p>Akun Aktif</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="#" class="small-box-footer"><i class="fa fa-user"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-6 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{$rekamdatas1}}<!-- <sup style="font-size: 20px">%</sup> --></h3>
+
+                <p>Rekam Data Aktif</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer"><i class="fa fa-database"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-6 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{$users2}}</h3>
+
+                <p>Akun Non-Aktif</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="#" class="small-box-footer"><i class="fa fa-user"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-6 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{$rekamdatas2}}</h3>
+
+                <p>Rekam Data Terhapus</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="#" class="small-box-footer"><i class="fa fa-database"></i></a>
+            </div>
+          </div>
+          @else
+          <div class="col-lg-6 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{$rekamdatas1}}<!-- <sup style="font-size: 20px">%</sup> --></h3>
+
+                <p>Rekam Data Aktif</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer"><i class="fa fa-database"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-6 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{$rekamdatas2}}</h3>
+
+                <p>Rekam Data Terhapus</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="#" class="small-box-footer"><i class="fa fa-database"></i></a>
+            </div>
+          </div>
+          @endif
+        </div>
+      </div>
     </section>
     <!-- /.content -->
   </div>
